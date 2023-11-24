@@ -1,6 +1,14 @@
 import { Box, Stack, Typography } from "@mui/material";
 import {Sidebar, Videos} from "./"
+
+import { fetchFromAPI } from "../utils/fetchFromApi";
+import { useEffect, useState } from "react";
+
 const Feed = () => {
+  const [selectedCategory, setSelectedCategory] = useState("New")
+  useEffect(() => {
+    fetchFromAPI(`search?part=snipet&q=${selectedCategory}`)
+  }, [selectedCategory])
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
