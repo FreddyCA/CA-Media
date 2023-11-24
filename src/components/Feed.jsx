@@ -1,14 +1,27 @@
 import { Box, Stack, Typography } from "@mui/material";
 import {Sidebar, Videos} from "./"
 
-import { fetchFromAPI } from "../utils/fetchFromApi";
 import { useEffect, useState } from "react";
+import  {fetchData} from "../utils/fetchFromApi"
 
 const Feed = () => {
-  const [selectedCategory, setSelectedCategory] = useState("New")
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    fetchFromAPI(`search?part=snipet&q=${selectedCategory}`)
-  }, [selectedCategory])
+    const fetchDataFromAPI = async () => {
+      try {
+        const result = await fetchData();
+        setData(result);
+      } catch (error) {
+        setError(error);
+      }
+      // volver con axios
+    };
+
+    fetchDataFromAPI();
+  }, []);
+  console.log(data)
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
