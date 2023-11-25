@@ -1,27 +1,16 @@
 import { Box, Stack, Typography } from "@mui/material";
-import {Sidebar, Videos} from "./"
-
+import { Sidebar, Videos } from "./";
 import { useEffect, useState } from "react";
-import  {fetchData} from "../utils/fetchFromApi"
+import { fetchFromAPI } from "../utils/fetchFromApi";
 
 const Feed = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
+  const [selectedCategory, setSelectedCategory] = useState("New");
+  const [videos, setVideos] = useState([]);
   useEffect(() => {
-    const fetchDataFromAPI = async () => {
-      try {
-        const result = await fetchData();
-        setData(result);
-      } catch (error) {
-        setError(error);
-      }
-      // volver con axios
-    };
-
-    fetchDataFromAPI();
-  }, []);
-  console.log(data)
+    fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) =>
+      setVideos(data.items)
+    );
+  }, [selectedCategory]);
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
@@ -31,7 +20,10 @@ const Feed = () => {
           px: { sx: 0, md: 2 },
         }}
       >
-        <Sidebar />
+        <Sidebar
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
         <Typography
           className="copyrigth"
           variant="body2"
@@ -42,10 +34,15 @@ const Feed = () => {
       </Box>
 
       <Box p={2} sx={{ overflowY: "auto", height: "90vh, flex:2" }}>
-        <Typography variant="h4" fontWeight="bold" mb={2} sx={{color: 'white'}}>
-          New <span style={{ color: "#f31503" }}>videos</span>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          mb={2}
+          sx={{ color: "white" }}
+        >
+          {selectedCategory} <span style={{ color: "#f31503" }}>videos</span>
         </Typography>
-        <Videos></Videos>
+        <Videos videos={videos}></Videos>
       </Box>
     </Stack>
   );

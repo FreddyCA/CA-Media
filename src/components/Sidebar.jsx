@@ -1,14 +1,15 @@
+import PropTypes from "prop-types";
 import { Stack } from "@mui/material";
 import { categories } from "../utils/constans";
 
-
-const Sidebar = ({selectedCategory, setSelectedCategory}) => {
+const Sidebar = ({ selectedCategory, setSelectedCategory }) => {
   return (
     <Stack
       direction="row"
       sx={{
-        height: { sx: "auto", md: "95%" },
+        height: { xs: "auto", md: "95%" },
         flexDirection: { md: "column" },
+        overflow: "auto",
       }}
     >
       {categories.map((category) => (
@@ -40,6 +41,11 @@ const Sidebar = ({selectedCategory, setSelectedCategory}) => {
       ))}
     </Stack>
   );
+};
+
+Sidebar.propTypes = {
+  selectedCategory: PropTypes.string.isRequired,
+  setSelectedCategory: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
