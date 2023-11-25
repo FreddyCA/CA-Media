@@ -28,6 +28,7 @@ const Feed = () => {
           className="copyrigth"
           variant="body2"
           sx={{ mt: 1.5, color: "#fff" }}
+          display={ {xs: "none", md: "block"}}
         >
           Copyright 2023 CA Media
         </Typography>

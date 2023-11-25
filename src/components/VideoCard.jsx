@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   demoChannelTitle,
   demoChannelUrl,
+  demoProfilePicture,
   demoVideoTitle,
   demoVideoUrl,
 } from "../utils/constans";
@@ -15,7 +16,7 @@ const VideoCard = ({
     snippet,
   },
 }) => {
-  console.log(videoId, snippet);
+  // console.log(videoId, snippet);
   return (
     <Card
       sx={{
@@ -28,7 +29,7 @@ const VideoCard = ({
     >
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
         <CardMedia
-          image={snippet?.thumbnails?.high?.url}
+          image={snippet?.thumbnails?.high?.url || demoProfilePicture}
           alt={snippet?.title}
           sx={{ width: 350, height: 180, margin: { xs: "0 auto" } }}
         />
