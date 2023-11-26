@@ -3,9 +3,7 @@ import { Box, Stack } from "@mui/material";
 import { VideoCard, ChannelCard } from "./";
 
 const Videos = ({ videos }) => {
-  console.log(videos);
   const channelsOnly = videos.filter((item) => item.id.channelId);
-  console.log(channelsOnly);
   const videosOnly = videos.filter((item) => item.id.videoId);
   return (
     <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"start"} gap={2}>

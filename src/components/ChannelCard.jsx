@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 import { demoProfilePicture } from "../utils/constans";
 import { CheckCircle } from "@mui/icons-material";
 
-const ChannelCard = ({ channelDetail }) => {
-  console.log("cjamenl", channelDetail);
+const ChannelCard = ({ channelDetail, marginTopChannelDetail }) => {
   return (
     <Box
       sx={{
         boxShadow: "none",
         backgroundColor: "#1e1e1e",
         borderRadius: "20px",
-        display: 'flex',
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: '350px',
-        height: '326px',
-        margin: 'auto',
+        width: "350px",
+        height: "326px",
+        margin: "auto",
+        marginTop: marginTopChannelDetail,
       }}
     >
       <Link to={`/channel/${channelDetail?.id?.channelId}`}>
@@ -54,9 +54,14 @@ const ChannelCard = ({ channelDetail }) => {
               }}
             />
           </Typography>
-          {channelDetail?.statistics?.subscriberCount && (<Typography>
-            {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString()} Subscribers
-          </Typography>)}
+          {channelDetail?.statistics?.subscriberCount && (
+            <Typography>
+              {parseInt(
+                channelDetail?.statistics?.subscriberCount
+              ).toLocaleString()}{" "}
+              Subscribers
+            </Typography>
+          )}
         </CardContent>
       </Link>
     </Box>
@@ -65,6 +70,7 @@ const ChannelCard = ({ channelDetail }) => {
 
 ChannelCard.propTypes = {
   channelDetail: PropTypes.object.isRequired,
+  marginTopChannelDetail: PropTypes.string,
 };
 
 export default ChannelCard;
