@@ -69,7 +69,7 @@ const ChannelCard = ({ channelDetail, marginTopChannelDetail }) => {
 };
 
 ChannelCard.propTypes = {
-  channelDetail: PropTypes.object.isRequired,
+  channelDetail: PropTypes.object,
   marginTopChannelDetail: PropTypes.string,
 };
 

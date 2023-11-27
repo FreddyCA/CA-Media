@@ -18,8 +18,6 @@ const ChannelDetail = () => {
       (data) => setVideos(data?.items)
     );
   }, [id]);
-  console.log(channelDetail);
-  console.log(videos);
   return (
     <Box minHeight={"100vh"}>
       <Box>
