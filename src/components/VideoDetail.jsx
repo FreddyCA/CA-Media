@@ -15,19 +15,30 @@ const VideoDetail = () => {
       setVideoDetail(data.items[0])
     );
 
-    // revisar si la api esta bien
-    fetchFromAPI(`search?part=snippet&${id}&type=video`).then((data) =>
-      setVideos(data.items)
+    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+      (data) => setVideos(data?.items)
     );
   }, [id]);
 
-  console.log(id, videos);
   return (
-    <Box minHeight={"90vh"}>
+    <Box
+      minHeight={"80vh"}
+      display={"flex"}
+      flexDirection={{ xs: "column", lg: "row" }}
+      width={"100%"}
+      justifyContent={"center"}
+    >
       <Stack direction={{ xs: "column", md: "column" }}>
         <Box flex={1}>
-          <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
+          <Box
+            sx={{
+              width: "100%",
+              position: "sticky",
+              top: "86px",
+            }}
+          >
             <ReactPlayer
+              height="100%"
               url={`https://www.youtube.com/watch?v=${id}`}
               className="react-player"
               controls
@@ -77,10 +88,12 @@ const VideoDetail = () => {
       <Box
         p={2}
         py={{ md: 1, xs: 5 }}
-        justifyContent={"center"}
+        display={"flex"}
         alignItems={"center"}
       >
-        {/* <Videos videos={videos}></Videos> */}
+        {videos && (
+          <Videos videos={videos} direction={"column"} margin={"0"}></Videos>
+        )}
       </Box>
     </Box>
   );
