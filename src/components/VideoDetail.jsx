@@ -28,7 +28,7 @@ const VideoDetail = () => {
       width={"100%"}
       justifyContent={"center"}
     >
-      <Stack direction={{ xs: "column", md: "column" }}>
+      <Stack width={"inherit"} direction={{ xs: "column", md: "column" }}>
         <Box flex={1}>
           <Box
             sx={{
@@ -85,12 +85,7 @@ const VideoDetail = () => {
           </Box>
         </Box>
       </Stack>
-      <Box
-        p={2}
-        py={{ md: 1, xs: 5 }}
-        display={"flex"}
-        alignItems={"center"}
-      >
+      <Box p={2} py={{ md: 1, xs: 5 }} display={"flex"} alignItems={"center"}>
         {videos && (
           <Videos videos={videos} direction={"column"} margin={"0"}></Videos>
         )}
